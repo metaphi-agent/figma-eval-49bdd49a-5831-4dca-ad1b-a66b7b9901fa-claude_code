@@ -1,0 +1,12 @@
+export { default as Dashboard } from './Dashboard';
+export { default as InvoiceList } from './InvoiceList';
+export { default as CustomerList } from './CustomerList';
+export { default as BoardList } from './BoardList';
+export { default as Calendar } from './Calendar';
+export { default as Messages } from './Messages';
+export { default as ScheduleList } from './ScheduleList';
+export { default as ProductAnalytics } from './ProductAnalytics';
+export { default as Login } from './Login';
+export { default as SignUp } from './SignUp';
+export { default as Recover } from './Recover';
+export { default as Confirm } from './Confirm';

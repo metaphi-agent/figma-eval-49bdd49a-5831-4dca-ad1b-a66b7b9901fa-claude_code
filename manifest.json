@@ -1,0 +1,22 @@
+{
+  "session_id": "session_20260130_170012",
+  "created_at": "2026-01-30T17:00:12.718312+00:00",
+  "steps": [
+    {
+      "name": "Step 1: Extract from Figma",
+      "status": "done",
+      "at": "2026-01-30T17:00:12.718312+00:00"
+    },
+    {
+      "name": "Step 2: Export Ground Truth",
+      "status": "done",
+      "at": "2026-01-30T17:00:12.760128+00:00"
+    }
+  ],
+  "artifacts": {
+    "figma_file_key": "mLzr95Yi2kwGyZBc44QiV7",
+    "figma_file_key_at": "2026-01-30T17:00:12.803224+00:00"
+  },
+  "notes": [],
+  "updated_at": "2026-01-30T17:00:12.803224+00:00"
+}

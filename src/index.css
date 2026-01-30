@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+/* Design tokens from Figma */
+@theme {
+  --font-sans: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Colors */
+  --color-primary: #605BFF;
+  --color-primary-light: #ACAAFF;
+  --color-primary-lighter: rgba(96, 91, 255, 0.2);
+  --color-primary-bg: rgba(96, 91, 255, 0.1);
+
+  --color-text: #030229;
+  --color-text-muted: rgba(3, 2, 41, 0.5);
+  --color-text-light: rgba(3, 2, 41, 0.7);
+
+  --color-background: #FAFAFB;
+  --color-background-alt: #F7F7F8;
+  --color-surface: #FFFFFF;
+
+  --color-red: #D11A2A;
+  --color-red-light: rgba(209, 26, 42, 0.1);
+  --color-green: #00B69B;
+  --color-green-light: rgba(0, 182, 155, 0.1);
+  --color-yellow: #FCBE2D;
+  --color-yellow-light: rgba(252, 190, 45, 0.1);
+  --color-orange: #FF9066;
+  --color-orange-light: rgba(255, 144, 102, 0.1);
+  --color-blue: #5EC3FF;
+  --color-blue-light: rgba(94, 195, 255, 0.1);
+  --color-pink: #FD5C9F;
+
+  --color-border: rgba(3, 2, 41, 0.05);
+  --color-border-medium: rgba(3, 2, 41, 0.1);
+
+  /* Border radius */
+  --radius-sm: 5px;
+  --radius-md: 10px;
+  --radius-lg: 15px;
+  --radius-xl: 20px;
+}
+
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/nunito/v26/XRXI3I6Li01BKofiOc5wtlZ2di8HDIkhdTk3j77e.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/nunito/v26/XRXI3I6Li01BKofiOc5wtlZ2di8HDFc3dTk3j77e.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/nunito/v26/XRXI3I6Li01BKofiOc5wtlZ2di8HDG43dTk3j77e.woff2) format('woff2');
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-medium);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}

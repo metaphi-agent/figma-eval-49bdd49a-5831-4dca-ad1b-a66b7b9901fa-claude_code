@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+/* Design tokens extracted from Figma */
+@theme {
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Colors */
+  --color-primary: #5B5FFF;
+  --color-success: #00C48C;
+  --color-warning: #FFA043;
+  --color-error: #FF5B5B;
+  --color-background: #F7F8FA;
+  --color-surface: #FFFFFF;
+  --color-text-primary: #202224;
+  --color-text-secondary: #8B8D97;
+  --color-text-disabled: #D1D3D8;
+
+  /* Status colors */
+  --color-complete: #00C48C;
+  --color-pending: #FFA043;
+  --color-cancel: #FF5B5B;
+
+  /* Priority colors */
+  --color-priority-low: #FF7C7C;
+  --color-priority-medium: #FF9F7C;
+  --color-priority-high: #00C4DB;
+  --color-on-track: #FFC043;
+  --color-at-risk: #D9534F;
+
+  /* Gender colors */
+  --color-male: #E5E7FF;
+  --color-female: #FFE5F1;
+
+  /* Border radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+}

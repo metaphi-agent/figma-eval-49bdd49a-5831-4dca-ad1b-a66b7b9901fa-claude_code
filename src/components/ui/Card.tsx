@@ -1,30 +1,24 @@
-import { HTMLAttributes, forwardRef } from 'react';
+import { ReactNode } from 'react';
 
-interface CardProps extends HTMLAttributes<HTMLDivElement> {
+interface CardProps {
+  children: ReactNode;
+  className?: string;
   padding?: 'none' | 'sm' | 'md' | 'lg';
 }
 
-const Card = forwardRef<HTMLDivElement, CardProps>(
-  ({ className = '', padding = 'md', children, ...props }, ref) => {
-    const paddingSizes = {
-      none: '',
-      sm: 'p-4',
-      md: 'p-6',
-      lg: 'p-8',
-    };
+export function Card({ children, className = '', padding = 'md' }: CardProps) {
+  const paddings = {
+    none: '',
+    sm: 'p-4',
+    md: 'p-6',
+    lg: 'p-8',
+  };
 
-    return (
-      <div
-        ref={ref}
-        className={`bg-surface rounded-[10px] ${paddingSizes[padding]} ${className}`}
-        {...props}
-      >
-        {children}
-      </div>
-    );
-  }
-);
-
-Card.displayName = 'Card';
-
-export default Card;
+  return (
+    <div
+      className={`bg-white rounded-[var(--radius-lg)] shadow-sm ${paddings[padding]} ${className}`}
+    >
+      {children}
+    </div>
+  );
+}

@@ -1,6 +1,9 @@
-export { default as Button } from './Button';
-export { default as Input } from './Input';
-export { default as Card } from './Card';
-export { default as Badge } from './Badge';
-export { default as Avatar } from './Avatar';
-export { default as Checkbox } from './Checkbox';
+export { Button } from './Button';
+export { Input } from './Input';
+export { Badge } from './Badge';
+export { Avatar } from './Avatar';
+export { Checkbox } from './Checkbox';
+export { Card } from './Card';
+export { Select } from './Select';
+export { Icons, Icon } from './Icons';
+export type { IconName } from './Icons';

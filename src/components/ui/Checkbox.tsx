@@ -4,29 +4,20 @@ interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'typ
   label?: string;
 }
 
-const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
-  ({ className = '', label, id, ...props }, ref) => {
-    const checkboxId = id || `checkbox-${Math.random().toString(36).substr(2, 9)}`;
-
+export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
+  ({ label, className = '', ...props }, ref) => {
     return (
-      <div className={`flex items-center gap-2 ${className}`}>
+      <label className={`inline-flex items-center gap-2 cursor-pointer ${className}`}>
         <input
-          ref={ref}
           type="checkbox"
-          id={checkboxId}
-          className="w-5 h-5 rounded-md border-2 border-primary text-primary focus:ring-2 focus:ring-primary/30 cursor-pointer"
+          ref={ref}
+          className="w-4 h-4 rounded-[var(--radius-sm)] border border-border-medium text-primary focus:ring-primary/20 focus:ring-2 checked:bg-primary checked:border-primary cursor-pointer"
           {...props}
         />
-        {label && (
-          <label htmlFor={checkboxId} className="text-sm text-text cursor-pointer">
-            {label}
-          </label>
-        )}
-      </div>
+        {label && <span className="text-sm text-text">{label}</span>}
+      </label>
     );
   }
 );
 
 Checkbox.displayName = 'Checkbox';
-
-export default Checkbox;

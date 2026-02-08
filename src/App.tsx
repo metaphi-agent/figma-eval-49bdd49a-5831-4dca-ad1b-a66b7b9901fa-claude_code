@@ -1,25 +1,39 @@
-import { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Layout } from './components/blocks';
+import {
+  Dashboard,
+  InvoiceList,
+  CustomerList,
+  Calendar,
+  Schedule,
+  TaskView,
+  Messages,
+  Product,
+  Login,
+  SignUp,
+  Recover,
+  Confirm,
+} from './pages';
 
-// Lazy load pages for better performance
-const Dashboard = lazy(() => import('./pages/Dashboard'));
-const InvoiceList = lazy(() => import('./pages/InvoiceList'));
-const CustomerList = lazy(() => import('./pages/CustomerList'));
-const BoardList = lazy(() => import('./pages/BoardList'));
-const Calendar = lazy(() => import('./pages/Calendar'));
-const Messages = lazy(() => import('./pages/Messages'));
-const ScheduleList = lazy(() => import('./pages/ScheduleList'));
-const ProductAnalytics = lazy(() => import('./pages/ProductAnalytics'));
-const Login = lazy(() => import('./pages/Login'));
-const SignUp = lazy(() => import('./pages/SignUp'));
-const Recover = lazy(() => import('./pages/Recover'));
-const Confirm = lazy(() => import('./pages/Confirm'));
+// Placeholder pages for routes without dedicated pages
+function Analytics() {
+  return <Product />;
+}
 
-// Loading fallback
-function LoadingSpinner() {
+function Notifications() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin" />
+    <div className="p-8 text-center">
+      <h1 className="text-2xl font-bold text-text mb-4">Notifications</h1>
+      <p className="text-text-muted">No new notifications</p>
+    </div>
+  );
+}
+
+function Settings() {
+  return (
+    <div className="p-8 text-center">
+      <h1 className="text-2xl font-bold text-text mb-4">Settings</h1>
+      <p className="text-text-muted">Settings page coming soon</p>
     </div>
   );
 }
@@ -27,28 +41,36 @@ function LoadingSpinner() {
 export default function App() {
   return (
     <BrowserRouter>
-      <Suspense fallback={<LoadingSpinner />}>
-        <Routes>
-          {/* Auth Routes */}
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/recover" element={<Recover />} />
-          <Route path="/confirm" element={<Confirm />} />
+      <Routes>
+        {/* Auth routes - no layout */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/recover" element={<Recover />} />
+        <Route path="/confirm" element={<Confirm />} />
 
-          {/* Dashboard Routes */}
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/analytics" element={<ProductAnalytics />} />
-          <Route path="/invoices" element={<InvoiceList />} />
-          <Route path="/schedule" element={<ScheduleList />} />
-          <Route path="/calendar" element={<Calendar />} />
-          <Route path="/messages" element={<Messages />} />
-          <Route path="/notifications" element={<Dashboard />} />
-          <Route path="/settings" element={<Dashboard />} />
-          <Route path="/customers" element={<CustomerList />} />
-          <Route path="/board" element={<BoardList />} />
-          <Route path="/products" element={<ProductAnalytics />} />
-        </Routes>
-      </Suspense>
+        {/* Dashboard routes - with layout */}
+        <Route
+          path="/*"
+          element={
+            <Layout>
+              <Routes>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/analytics" element={<Analytics />} />
+                <Route path="/invoices" element={<InvoiceList />} />
+                <Route path="/schedule" element={<Schedule />} />
+                <Route path="/calendar" element={<Calendar />} />
+                <Route path="/messages" element={<Messages />} />
+                <Route path="/notifications" element={<Notifications />} />
+                <Route path="/settings" element={<Settings />} />
+                <Route path="/customers" element={<CustomerList />} />
+                <Route path="/tasks" element={<TaskView />} />
+                <Route path="/board" element={<TaskView />} />
+                <Route path="/products" element={<Product />} />
+              </Routes>
+            </Layout>
+          }
+        />
+      </Routes>
     </BrowserRouter>
   );
 }

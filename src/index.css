@@ -1,13 +1,12 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap');
 
-/* Design tokens from Figma */
 @theme {
-  --font-sans: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans: 'Nunito', sans-serif;
 
   /* Colors */
   --color-primary: #605BFF;
   --color-primary-light: #ACAAFF;
-  --color-primary-lighter: rgba(96, 91, 255, 0.2);
   --color-primary-bg: rgba(96, 91, 255, 0.1);
 
   --color-text: #030229;
@@ -16,7 +15,7 @@
 
   --color-background: #FAFAFB;
   --color-background-alt: #F7F7F8;
-  --color-surface: #FFFFFF;
+  --color-white: #FFFFFF;
 
   --color-red: #D11A2A;
   --color-red-light: rgba(209, 26, 42, 0.1);
@@ -38,30 +37,12 @@
   --radius-md: 10px;
   --radius-lg: 15px;
   --radius-xl: 20px;
-}
+  --radius-full: 9999px;
 
-@font-face {
-  font-family: 'Nunito';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/nunito/v26/XRXI3I6Li01BKofiOc5wtlZ2di8HDIkhdTk3j77e.woff2) format('woff2');
-}
-
-@font-face {
-  font-family: 'Nunito';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/nunito/v26/XRXI3I6Li01BKofiOc5wtlZ2di8HDFc3dTk3j77e.woff2) format('woff2');
-}
-
-@font-face {
-  font-family: 'Nunito';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/nunito/v26/XRXI3I6Li01BKofiOc5wtlZ2di8HDG43dTk3j77e.woff2) format('woff2');
+  /* Shadows */
+  --shadow-sm: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0px 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 body {
@@ -71,7 +52,7 @@ body {
   color: var(--color-text);
 }
 
-/* Custom scrollbar */
+/* Scrollbar styling */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;

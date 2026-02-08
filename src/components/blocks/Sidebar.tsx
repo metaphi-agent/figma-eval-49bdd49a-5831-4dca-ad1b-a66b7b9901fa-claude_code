@@ -1,105 +1,99 @@
-import { NavLink } from 'react-router-dom';
-import { Avatar } from '../ui';
+import { NavLink, useLocation } from 'react-router-dom';
+import { Avatar } from '../ui/Avatar';
+import { Badge } from '../ui/Badge';
+import { Button } from '../ui/Button';
+import { Icons } from '../ui/Icons';
 
-const navItems = [
-  { icon: 'dashboard', label: 'Dashboard', path: '/' },
-  { icon: 'analytics', label: 'Analytics', path: '/analytics' },
-  { icon: 'invoice', label: 'Invoice', path: '/invoices' },
-  { icon: 'schedule', label: 'Schedule', path: '/schedule' },
-  { icon: 'calendar', label: 'Calendar', path: '/calendar' },
-  { icon: 'messages', label: 'Messages', path: '/messages', badge: 49 },
-  { icon: 'notification', label: 'Notification', path: '/notifications' },
-  { icon: 'settings', label: 'Settings', path: '/settings' },
-];
+const navigation = [
+  { name: 'Dashboard', path: '/', icon: 'dashboard' },
+  { name: 'Analytics', path: '/analytics', icon: 'analytics' },
+  { name: 'Invoice', path: '/invoices', icon: 'invoice' },
+  { name: 'Schedule', path: '/schedule', icon: 'schedule' },
+  { name: 'Calendar', path: '/calendar', icon: 'calendar' },
+  { name: 'Messages', path: '/messages', icon: 'messages', badge: 49 },
+  { name: 'Notification', path: '/notifications', icon: 'notification' },
+  { name: 'Settings', path: '/settings', icon: 'settings' },
+] as const;
 
-interface SidebarProps {
-  collapsed?: boolean;
-}
+export function Sidebar() {
+  const location = useLocation();
 
-export default function Sidebar({ collapsed = false }: SidebarProps) {
+  const checkActive = (path: string) => {
+    if (path === '/') return location.pathname === '/';
+    return location.pathname.startsWith(path);
+  };
+
   return (
-    <aside className={`fixed left-0 top-0 h-screen bg-surface flex flex-col transition-all duration-300 ${collapsed ? 'w-[72px]' : 'w-[218px]'}`}>
-      {/* Logo */}
-      <div className={`flex items-center gap-3 px-6 py-5 ${collapsed ? 'justify-center px-3' : ''}`}>
-        <img src="./assets/icons/logo.svg" alt="Base" className="w-[42px] h-[42px]" />
-        {!collapsed && <span className="text-2xl font-semibold text-text">Base</span>}
+    <aside className="w-[220px] h-screen bg-white flex flex-col fixed left-0 top-0 border-r border-border">
+      <div className="px-6 py-6 flex items-center gap-2">
+        <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 12C4 12 6 8 12 8M12 8C18 8 20 12 20 12M12 8V4M8 6L12 8L16 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </div>
+        <span className="text-xl font-bold text-text">Base</span>
       </div>
 
-      {/* Navigation */}
-      <nav className="flex-1 flex flex-col gap-1 px-3 py-4">
-        {navItems.map((item) => (
-          <NavLink
-            key={item.path}
-            to={item.path}
-            className={({ isActive }) =>
-              `flex items-center gap-3 px-3 py-3 rounded-r-[5px] transition-all ${collapsed ? 'justify-center' : ''} ${
-                isActive
-                  ? 'bg-gradient-to-r from-primary-lighter/20 to-transparent text-primary'
-                  : 'text-text-muted hover:bg-background-alt hover:text-text'
-              }`
-            }
-          >
-            {({ isActive }) => (
-              <>
-                <img
-                  src={`./assets/icons/${item.icon}.svg`}
-                  alt=""
-                  className={`w-6 h-6 ${isActive ? '' : 'opacity-40'}`}
-                  style={isActive ? {} : { filter: 'grayscale(100%)' }}
-                />
-                {!collapsed && (
-                  <span className="font-semibold text-base flex-1">{item.label}</span>
-                )}
-                {!collapsed && item.badge && (
-                  <span className="px-2 py-0.5 text-[10px] font-semibold text-red bg-red-light rounded-[7px]">
-                    {item.badge}
+      <nav className="flex-1 px-4 py-2">
+        <ul className="space-y-1">
+          {navigation.map((item) => {
+            const active = checkActive(item.path);
+            const baseClass = 'flex items-center gap-3 px-3 py-2.5 rounded-[var(--radius-md)] text-sm font-medium transition-colors duration-150';
+            const activeClass = active ? 'text-primary bg-primary-bg' : 'text-text-light hover:bg-background-alt';
+            const iconClass = active ? 'text-primary' : 'text-text-muted';
+            return (
+              <li key={item.name}>
+                <NavLink to={item.path} className={baseClass + ' ' + activeClass}>
+                  <span className={iconClass}>
+                    {Icons[item.icon as keyof typeof Icons]}
                   </span>
-                )}
-              </>
-            )}
-          </NavLink>
-        ))}
+                  <span>{item.name}</span>
+                  {item.badge && (
+                    <Badge variant="success" size="sm" className="ml-auto">
+                      {item.badge}
+                    </Badge>
+                  )}
+                </NavLink>
+              </li>
+            );
+          })}
+        </ul>
       </nav>
 
-      {/* Upgrade Card */}
-      {!collapsed && (
-        <div className="mx-4 mb-4 p-4 bg-blue-light/10 rounded-[20px] relative overflow-hidden">
-          <div className="absolute inset-0 flex items-center justify-center">
-            <svg className="w-32 h-32 text-blue/20" viewBox="0 0 128 128" fill="none">
-              <path d="M64 16L80 48L116 52L88 80L96 116L64 98L32 116L40 80L12 52L48 48L64 16Z" fill="currentColor" />
+      <div className="px-4 pb-4">
+        <div className="relative bg-gradient-to-b from-blue-light to-transparent rounded-[var(--radius-lg)] p-4 pt-20 flex flex-col items-center overflow-hidden">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2">
+            <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M50 10L55 50L65 30L75 70L50 90L25 70L35 30L45 50L50 10Z" fill="url(#ug)" fillOpacity="0.5"/>
+              <defs>
+                <linearGradient id="ug" x1="50" y1="10" x2="50" y2="90" gradientUnits="userSpaceOnUse">
+                  <stop stopColor="#5EC3FF"/>
+                  <stop offset="1" stopColor="#605BFF" stopOpacity="0"/>
+                </linearGradient>
+              </defs>
             </svg>
           </div>
-          <div className="relative z-10">
-            <div className="w-[150px] h-[150px] mx-auto mb-2 flex items-center justify-center">
-              <img src="./assets/icons/logo.svg" alt="" className="w-24 h-24 opacity-80" />
-            </div>
-            <button className="w-full py-2 bg-primary text-white text-xs font-semibold rounded-[10px] hover:bg-primary/90 transition-colors">
-              Upgrade Now
-            </button>
-          </div>
+          <Button size="sm" className="w-full relative z-10">
+            Upgrade Now
+          </Button>
         </div>
-      )}
+      </div>
 
-      {/* User Profile */}
-      <div className={`flex items-center gap-3 px-4 py-4 border-t border-border ${collapsed ? 'justify-center px-3' : ''}`}>
-        <Avatar
-          src="https://randomuser.me/api/portraits/men/32.jpg"
-          alt="Easin Arafat"
-          size="md"
-        />
-        {!collapsed && (
-          <>
-            <div className="flex-1 min-w-0">
-              <p className="text-sm font-semibold text-text truncate">Easin Arafat</p>
-              <p className="text-xs text-text-muted truncate">Free Account</p>
-            </div>
-            <img
-              src="./assets/icons/logout.svg"
-              alt="Logout"
-              className="w-5 h-5 opacity-40 cursor-pointer hover:opacity-70 transition-opacity"
-            />
-          </>
-        )}
+      <div className="px-4 py-4 border-t border-border">
+        <div className="flex items-center gap-3">
+          <Avatar
+            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face"
+            name="Easin Arafat"
+            size="md"
+          />
+          <div className="flex-1 min-w-0">
+            <p className="text-sm font-semibold text-text truncate">Easin Arafat</p>
+            <p className="text-xs text-text-muted">Free Account</p>
+          </div>
+          <button className="text-text-muted hover:text-text transition-colors">
+            {Icons.logout}
+          </button>
+        </div>
       </div>
     </aside>
   );

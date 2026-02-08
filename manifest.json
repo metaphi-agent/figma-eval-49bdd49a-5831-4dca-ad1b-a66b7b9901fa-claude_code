@@ -11,12 +11,46 @@
       "name": "Step 2: Export Ground Truth",
       "status": "done",
       "at": "2026-01-30T17:00:12.760128+00:00"
+    },
+    {
+      "name": "Step 3: Visual Analysis",
+      "status": "done",
+      "at": "2026-02-08T12:00:00.000000+00:00"
+    },
+    {
+      "name": "Step 4: Scaffold Project",
+      "status": "done",
+      "at": "2026-02-08T12:05:00.000000+00:00"
+    },
+    {
+      "name": "Step 5: Build Components & Pages",
+      "status": "done",
+      "at": "2026-02-08T12:30:00.000000+00:00"
+    },
+    {
+      "name": "Step 6: Build & Test",
+      "status": "done",
+      "at": "2026-02-08T12:45:00.000000+00:00"
+    },
+    {
+      "name": "Step 7: Deploy & Deliver",
+      "status": "done",
+      "at": "2026-02-08T12:50:00.000000+00:00"
     }
   ],
   "artifacts": {
     "figma_file_key": "mLzr95Yi2kwGyZBc44QiV7",
-    "figma_file_key_at": "2026-01-30T17:00:12.803224+00:00"
+    "figma_file_key_at": "2026-01-30T17:00:12.803224+00:00",
+    "preview_url": "https://ta-01kgyf8n0nx9gpgtfwagz5zq28-5173.wo-qxktbj9pchfmidy3fypvjoe1f.w.modal.host",
+    "gcs_url": "https://storage.googleapis.com/metaphi-agent/figma-to-code/49bdd49a-5831-4dca-ad1b-a66b7b9901fa/index.html",
+    "github_url": "https://github.com/metaphi-agent/figma-eval-49bdd49a-5831-4dca-ad1b-a66b7b9901fa-claude_code"
   },
-  "notes": [],
-  "updated_at": "2026-01-30T17:00:12.803224+00:00"
+  "notes": [
+    "Built complete SaaS Dashboard with 12 pages",
+    "Components: Button, Input, Badge, Avatar, Checkbox, Card, Select, Icons",
+    "Pages: Dashboard, InvoiceList, CustomerList, Calendar, Schedule, TaskView, Messages, Product, Login, SignUp, Recover, Confirm",
+    "Charts using Recharts (LineChart, PieChart, BarChart)",
+    "Tailwind CSS v4 with design tokens"
+  ],
+  "updated_at": "2026-02-08T12:50:00.000000+00:00"
 }

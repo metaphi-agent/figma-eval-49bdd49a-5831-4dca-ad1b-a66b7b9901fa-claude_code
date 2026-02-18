@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { Layout } from './components/blocks';
 import {
   Dashboard,
@@ -40,37 +40,28 @@ function Settings() {
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        {/* Auth routes - no layout */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/recover" element={<Recover />} />
-        <Route path="/confirm" element={<Confirm />} />
+    <Routes>
+      {/* Auth routes - no layout */}
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<SignUp />} />
+      <Route path="/recover" element={<Recover />} />
+      <Route path="/confirm" element={<Confirm />} />
 
-        {/* Dashboard routes - with layout */}
-        <Route
-          path="/*"
-          element={
-            <Layout>
-              <Routes>
-                <Route path="/" element={<Dashboard />} />
-                <Route path="/analytics" element={<Analytics />} />
-                <Route path="/invoices" element={<InvoiceList />} />
-                <Route path="/schedule" element={<Schedule />} />
-                <Route path="/calendar" element={<Calendar />} />
-                <Route path="/messages" element={<Messages />} />
-                <Route path="/notifications" element={<Notifications />} />
-                <Route path="/settings" element={<Settings />} />
-                <Route path="/customers" element={<CustomerList />} />
-                <Route path="/tasks" element={<TaskView />} />
-                <Route path="/board" element={<TaskView />} />
-                <Route path="/products" element={<Product />} />
-              </Routes>
-            </Layout>
-          }
-        />
-      </Routes>
-    </BrowserRouter>
+      {/* Dashboard routes - with layout */}
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Dashboard />} />
+        <Route path="analytics" element={<Analytics />} />
+        <Route path="invoices" element={<InvoiceList />} />
+        <Route path="schedule" element={<Schedule />} />
+        <Route path="calendar" element={<Calendar />} />
+        <Route path="messages" element={<Messages />} />
+        <Route path="notifications" element={<Notifications />} />
+        <Route path="settings" element={<Settings />} />
+        <Route path="customers" element={<CustomerList />} />
+        <Route path="tasks" element={<TaskView />} />
+        <Route path="board" element={<TaskView />} />
+        <Route path="products" element={<Product />} />
+      </Route>
+    </Routes>
   );
 }
